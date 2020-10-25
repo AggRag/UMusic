@@ -23,7 +23,6 @@ html, body {
 	left: 0;
 	top: 0;
 
-	min-width: 200px;
 	z-index: 1;
 }
 
@@ -48,6 +47,7 @@ html, body {
 
 #soundcloud-player .input {
 	width: 100%;
+	min-width: 200px;
 }
 
 #soundcloud-player .input-search {
@@ -62,10 +62,90 @@ html, body {
 
 #soundcloud-player .search-results {
 	justify-content: center;
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .image-img{
-	width: 290px;
-	height:290px;
+	width: 100%;
+	height:100%;
+}
+
+#playlistBtn {
+	display: none;
+}
+
+#mobileBtn {
+	display: none;
+}
+
+@media only screen and (min-device-width : 1001px) {
+	#soundcloud-player .col-left {
+		width: 20%;
+		height: 100%;
+		background-color: #292929;
+		overflow: auto;
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		display: block;
+	}
+	#soundcloud-player .col-right {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		position: fixed;
+		left: 0;
+		top: 0;
+		display: block;
+		box-sizing: border-box;
+		padding-left: 20%;
+	}
+}
+
+@media only screen and (max-device-width : 1000px) {
+	.main {
+		margin: 0;
+		padding: 0;
+	}
+	#soundcloud-player .col-left {
+		padding-top: 10%;
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: fixed;
+	}
+	#soundcloud-player .col-right {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		position: fixed;
+		left: 0;
+		top: 0;
+		box-sizing: border-box;
+		padding-left: 0%;
+		font-size: 70%;
+	}
+	#playlistBtn {
+		background-color: #292929;
+		border: none;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		display: block;
+		font-size: 1em;
+		width: 100%;
+		height: 100%;
+	}
+	#mobileBtn {
+		width: 100%;
+		display: block;
+		position: fixed;
+		height: 50px;
+		top: 0;
+		z-index:100;
+	}
+	.ui.container {
+		margin-left: 0em!important;
+	}
 }
