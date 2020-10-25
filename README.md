@@ -1,3 +1,3 @@
 # UMusic
 
-Try it here [UMusic](http://distinct-baby.surge.sh/)
+Try it here [UMusic](http://unbecoming-cough.surge.sh/)
