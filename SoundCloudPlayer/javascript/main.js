@@ -102,11 +102,16 @@ SoundCloudAPI.renderTracks = function(tracks){
     button.addEventListener('click', function(){
       SoundCloudAPI.getEmbed(track.permalink_url);
       //if the users screen width <= 1000 they are using mobile css
-      if (window.innerWidth <= 1000) {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        // Take the user to a different screen here.
         play.style.display = "block";
         search.style.display = "none";
         btn.innerText = "Back To Search";
+        console.log('Click!');
       }
+      //if (window.innerWidth <= 1000) {
+
+      //}
     });
 
     card.appendChild(imageDiv);
