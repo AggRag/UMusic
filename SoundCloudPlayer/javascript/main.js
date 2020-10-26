@@ -45,7 +45,7 @@ SoundCloudAPI.init =  function(){
 
 	SC.initialize({
 	  client_id: 'cd9be64eeb32d1741c17cb39e41d254d'
-	});
+  });
 }
 
 SoundCloudAPI.init();
@@ -61,6 +61,9 @@ SoundCloudAPI.getTrack = function(inputValue){
 }
 
 
+var play = document.getElementById("playlistBox");
+var search = document.getElementById("searchBox");
+var btn = document.getElementById("playlistBtn");
 
 SoundCloudAPI.renderTracks = function(tracks){
 
@@ -100,9 +103,18 @@ SoundCloudAPI.renderTracks = function(tracks){
     button.appendChild(text);
 
     button.addEventListener('click', function(){
+      SoundCloudAPI.getEmbed(track.permalink_url);
+      //if the users screen width <= 1000 they are using mobile css
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        // Take the user to a different screen here.
+        play.style.display = "block";
+        search.style.display = "none";
+        btn.innerText = "Back To Search";
+        console.log('Click!');
+      }
+      //if (window.innerWidth <= 1000) {
 
-    	SoundCloudAPI.getEmbed(track.permalink_url);
-
+      //}
     });
 
     card.appendChild(imageDiv);
@@ -123,10 +135,10 @@ SoundCloudAPI.renderTracks = function(tracks){
 
 SoundCloudAPI.getEmbed = function(trackURL){
 	SC.oEmbed(trackURL, {
-  auto_play: true
+      auto_play: true
 }).then(function(embed){
 
-
+  console.log("URL = ", embed);
   var sideBar = document.querySelector(".js-playlist");
 
 
@@ -142,14 +154,12 @@ SoundCloudAPI.getEmbed = function(trackURL){
 var sideBar = document.querySelector(".js-playlist");
 sideBar.innerHTML  = localStorage.getItem("key");
 
+
 /*
 This hides one of the col's when the button is pressed.
 Essentially just switches between the two in mobile mode
 */
 function hidePlaylist() {
-  var play = document.getElementById("playlistBox");
-  var search = document.getElementById("searchBox");
-  var btn = document.getElementById("playlistBtn");
   if (play.style.display === "none") {
     play.style.display = "block";
     search.style.display = "none";
@@ -166,11 +176,11 @@ This is to detect when the app goes into fullscreen again
 so I can reset the display on both col's
 */
 window.addEventListener('resize', function(){
-  var play = document.getElementById("playlistBox");
-  var search = document.getElementById("searchBox");
-  var btn = document.getElementById("playlistBtn");
-  if(screen.width === window.innerWidth){
+  if(screen.width >= 1001){
     play.style.display = "block";
+    search.style.display = "block";
+  } else if (screen.width <= 1000) {
+    play.style.display = "none";
     search.style.display = "block";
   }
 });
