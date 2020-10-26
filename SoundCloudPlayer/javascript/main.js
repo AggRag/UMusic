@@ -61,6 +61,9 @@ SoundCloudAPI.getTrack = function(inputValue){
 }
 
 
+var play = document.getElementById("playlistBox");
+var search = document.getElementById("searchBox");
+var btn = document.getElementById("playlistBtn");
 
 SoundCloudAPI.renderTracks = function(tracks){
 
@@ -152,11 +155,6 @@ var sideBar = document.querySelector(".js-playlist");
 sideBar.innerHTML  = localStorage.getItem("key");
 
 
-var play = document.getElementById("playlistBox");
-var search = document.getElementById("searchBox");
-var btn = document.getElementById("playlistBtn");
-
-
 /*
 This hides one of the col's when the button is pressed.
 Essentially just switches between the two in mobile mode
@@ -178,8 +176,11 @@ This is to detect when the app goes into fullscreen again
 so I can reset the display on both col's
 */
 window.addEventListener('resize', function(){
-  if(screen.width === window.innerWidth){
+  if(screen.width >= 1001){
     play.style.display = "block";
+    search.style.display = "block";
+  } else if (screen.width <= 1000) {
+    play.style.display = "none";
     search.style.display = "block";
   }
 });
